@@ -17,6 +17,21 @@ namespace Libreria.AccesoDatos.EF
 		public LibreriaContext(DbContextOptions<LibreriaContext> options)
 			:base(options)
 		{			
-		}		
-	}
+		}
+
+		//para que el id sea deambas key
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+			modelBuilder.Entity<Autor>().HasMany<AutorPublicacion>().WithOne(ap => ap.Autor);
+			modelBuilder.Entity<Publicacion>().HasMany<AutorPublicacion>().WithOne(ap => ap.Publicacion);
+
+			modelBuilder.Entity<AutorPublicacion>().HasKey(ap => new { ap.AutorId, ap.PublicacionId});
+
+			modelBuilder.Entity<AutorPublicacion>().Property(ap => ap.Id).ValueGeneratedOnAdd();//cada vez que se ingresa se genera el valor como identity
+
+
+			base.OnModelCreating(modelBuilder);	
+        }
+
+    }
 }

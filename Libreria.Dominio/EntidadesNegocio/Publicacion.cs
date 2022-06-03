@@ -10,6 +10,8 @@ namespace Libreria.Dominio.EntidadesNegocio
         public int Id { get; set; }
         public int CantidadPaginas { get; set; }
         public int PrecioSugerido { get; set; }        
+        public IEnumerable<AutorPublicacion> AutoresPublicaciones { get; set; }
+        
     }
 
 }

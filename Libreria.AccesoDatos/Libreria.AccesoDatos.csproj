@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220603010328_inicial.cs" />
+    <Compile Remove="Migrations\20220603010328_inicial.Designer.cs" />
+    <Compile Remove="Migrations\20220603011415_inicial.cs" />
+    <Compile Remove="Migrations\20220603011415_inicial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.25">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,6 +25,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Libreria.Dominio\Libreria.Dominio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
