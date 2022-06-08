@@ -11,5 +11,17 @@ namespace Libreria.Dominio.InterfacesRepositorios
 		public IEnumerable<Autor> GetAutoresNacionalidad(string nacionalidad);
 		public IEnumerable<Autor> GetAutoresNombreIncluye(string textoBuscado);
 
+		public IEnumerable<Autor> GetAutoresConPublicacionesMasQue(int paginas);
+
+		public IEnumerable<Autor> GetAutoresQuePublicaronEnRevistas();
+
+		public IEnumerable<Publicacion> GetPublicacionesDeAutor(int id);
+
+		public IEnumerable<Libro> GetLibrosConVariosAutores();
+
+		public IEnumerable<Revista> GetRevistasConAutoresDeLibro();
+
+		public IEnumerable<Autor> GetAutoresQueSolamentePublicaronLibros();
+
 	}
 }
