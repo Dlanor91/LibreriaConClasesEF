@@ -27,8 +27,4 @@
     <ProjectReference Include="..\Libreria.Dominio\Libreria.Dominio.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

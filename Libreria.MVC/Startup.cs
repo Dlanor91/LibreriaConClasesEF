@@ -28,6 +28,11 @@ namespace Libreria.MVC
 			services.AddControllersWithViews();
 			//Agregar el servicio para configurar la clase de contexto
 			//Observar que Configuration ya fue inyectada en el constructor de Startup
+			//services.AddDbContext<LibreriaContext>(
+			//											options =>
+			//											options.UseSqlServer(
+			//											Configuration.GetConnectionString("ConexionLibreria_Dev"),
+			//											x => x.MigrationsAssembly("N3BLibreriaEF")));
 			services.AddDbContext<LibreriaContext>
 				(opciones => opciones
 							.UseSqlServer(Configuration.GetConnectionString("ConexionLibreria_Dev"))
