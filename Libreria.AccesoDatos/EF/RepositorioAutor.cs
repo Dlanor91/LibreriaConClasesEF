@@ -24,7 +24,7 @@ namespace AccesoDatos.EF
 
 		public IEnumerable<Autor> FindAll()
 		{
-			throw new NotImplementedException();
+			return Contexto.Autores.ToList();
 		}
 
 		public Autor FindById(object Clave)

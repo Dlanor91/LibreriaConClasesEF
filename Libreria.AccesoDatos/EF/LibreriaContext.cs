@@ -22,9 +22,7 @@ namespace Libreria.AccesoDatos.EF
 		//para que el id sea deambas key
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-			//modelBuilder.Entity<Autor>().HasMany<AutorPublicacion>().WithOne(ap => ap.Autor);
-			//modelBuilder.Entity<Publicacion>().HasMany<AutorPublicacion>().WithOne(ap => ap.Publicacion);
-
+			
 			modelBuilder.Entity<Autor>().HasMany(a => a.AutoresPublicaciones).WithOne(ap => ap.Autor);
 			modelBuilder.Entity<Publicacion>().HasMany(p => p.AutoresPublicaciones).WithOne(ap => ap.Publicacion);
 
