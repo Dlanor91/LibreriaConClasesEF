@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Libreria.Dominio.EntidadesNegocio
 {
@@ -10,11 +10,11 @@ namespace Libreria.Dominio.EntidadesNegocio
         public int Id { get; set; }
         public Autor Autor { get; set; }
         public Publicacion Publicacion { get; set; }
+        
+        //[ForeignKey("Autor")]
+        public int AutorId { get; set; }
 
-        //agrego pro por los id de las key
-        [ForeignKey("Autor")]
-        public int AutorId { get; set; } 
-        [ForeignKey("Publicacion")]
+        //[ForeignKey("Publicacion")]
         public int PublicacionId { get; set; }
     }
 }

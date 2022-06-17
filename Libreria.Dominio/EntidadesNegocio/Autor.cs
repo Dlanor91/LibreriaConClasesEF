@@ -15,6 +15,7 @@ namespace Libreria.Dominio.EntidadesNegocio
 		public string Nombre { get; set; }
 		public string Nacionalidad { get; set; }
 		public int Id { get ; set ; }
+
         public IEnumerable<AutorPublicacion> AutoresPublicaciones { get; set; }
 
         #endregion

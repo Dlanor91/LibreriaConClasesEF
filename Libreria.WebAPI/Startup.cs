@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using Libreria.Dominio.InterfacesRepositorios;
-using Libreria.AccesoDatos;
 using Libreria.AccesoDatos.EF;
 
 namespace Libreria.WebAPI
@@ -29,16 +28,16 @@ namespace Libreria.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddNewtonsoftJson(options =>
-                                                        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            //Configura el uso del serializador json de Newtonsoft en vez del que viene con Core
+            //Configura ese serializador para que ignore las referencias circulares
+            services.AddControllers().AddNewtonsoftJson(options => 
+                            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
+            services.AddDbContext<LibreriaContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("ConexionLibreria_Dev")));
 
             services.AddScoped<IRepositorioPublicacion, RepositorioPublicacion>();
-            services.AddControllers();
-            services.AddControllersWithViews();
-            services.AddDbContext<LibreriaContext>
-                (opciones => opciones
-                            .UseSqlServer(Configuration.GetConnectionString("ConexionLibreria_Dev"))
-                            .EnableSensitiveDataLogging());//no es obligatorio
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

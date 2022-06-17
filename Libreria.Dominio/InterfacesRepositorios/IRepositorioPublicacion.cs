@@ -7,6 +7,6 @@ namespace Libreria.Dominio.InterfacesRepositorios
 {
     public interface IRepositorioPublicacion : IRepositorio<Publicacion>
     {
-        IEnumerable<Publicacion> ObtenerlasPublicacionesDelAutor(int idAutor);
+        IEnumerable<Publicacion> ObtenerLasPublicacionesDelAutor(int idAutor);
     }
 }

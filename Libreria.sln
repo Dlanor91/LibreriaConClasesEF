@@ -14,9 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libreria.SistemaAutenticacion", "Libreria.SistemaAutenticacion\Libreria.SistemaAutenticacion.csproj", "{CE7075E5-ADD5-41FD-8A87-5C7ECAD24957}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libreria.WebAPI", "Libreria.WebAPI\Libreria.WebAPI.csproj", "{BF416F35-4A4E-472F-B755-4B3D911CFEA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libreria.MVC", "Libreria.MVC\Libreria.MVC.csproj", "{5DCBE57F-384C-45BD-871C-A52432633B4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibreriaDTO", "LibreriaDTO\LibreriaDTO.csproj", "{74440C93-FB68-49FF-9B06-34AAB68F9481}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria.WebAPI", "Libreria.WebAPI\Libreria.WebAPI.csproj", "{1D897915-BC06-47A6-926B-E19EF04A4FDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria.DTOs", "Libreria.DTOs\Libreria.DTOs.csproj", "{7AFF1E18-39C0-46DA-8BF1-F9793E50F8FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,14 +38,18 @@ Global
 		{CE7075E5-ADD5-41FD-8A87-5C7ECAD24957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE7075E5-ADD5-41FD-8A87-5C7ECAD24957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE7075E5-ADD5-41FD-8A87-5C7ECAD24957}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF416F35-4A4E-472F-B755-4B3D911CFEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF416F35-4A4E-472F-B755-4B3D911CFEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF416F35-4A4E-472F-B755-4B3D911CFEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF416F35-4A4E-472F-B755-4B3D911CFEA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74440C93-FB68-49FF-9B06-34AAB68F9481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74440C93-FB68-49FF-9B06-34AAB68F9481}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74440C93-FB68-49FF-9B06-34AAB68F9481}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74440C93-FB68-49FF-9B06-34AAB68F9481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DCBE57F-384C-45BD-871C-A52432633B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DCBE57F-384C-45BD-871C-A52432633B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DCBE57F-384C-45BD-871C-A52432633B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DCBE57F-384C-45BD-871C-A52432633B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D897915-BC06-47A6-926B-E19EF04A4FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D897915-BC06-47A6-926B-E19EF04A4FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D897915-BC06-47A6-926B-E19EF04A4FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D897915-BC06-47A6-926B-E19EF04A4FDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AFF1E18-39C0-46DA-8BF1-F9793E50F8FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AFF1E18-39C0-46DA-8BF1-F9793E50F8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AFF1E18-39C0-46DA-8BF1-F9793E50F8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AFF1E18-39C0-46DA-8BF1-F9793E50F8FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

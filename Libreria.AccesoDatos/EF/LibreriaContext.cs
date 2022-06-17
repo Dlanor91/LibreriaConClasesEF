@@ -7,7 +7,7 @@ using AccesoDatos.EF;
 
 namespace Libreria.AccesoDatos.EF
 {
-	public class LibreriaContext:DbContext
+	public class LibreriaContext : DbContext
 	{
 		public DbSet<Autor> Autores{ get; set; }
 		public DbSet<Publicacion> Publicaciones { get; set; }
@@ -19,20 +19,26 @@ namespace Libreria.AccesoDatos.EF
 		{			
 		}
 
-		//para que el id sea deambas key
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+			//FLUENT API PARA CONFIGURAR COSAS
+
+			//modelBuilder.Entity<Autor>().HasMany<AutorPublicacion>().WithOne(ap => ap.Autor);
+			//modelBuilder.Entity<Publicacion>().HasMany<AutorPublicacion>().WithOne(ap => ap.Publicacion);
 			
+			//LO ANTERIOR SE CAMBIÓ POR ESTO PARA CORREGIR LAS FK DUPLICADAS EN LA TABLA AUTORPUBLICACION:
 			modelBuilder.Entity<Autor>().HasMany(a => a.AutoresPublicaciones).WithOne(ap => ap.Autor);
 			modelBuilder.Entity<Publicacion>().HasMany(p => p.AutoresPublicaciones).WithOne(ap => ap.Publicacion);
 
-			modelBuilder.Entity<AutorPublicacion>().HasKey(ap => new { ap.AutorId, ap.PublicacionId});
+			modelBuilder.Entity<AutorPublicacion>().HasKey(ap => new { ap.AutorId, ap.PublicacionId });
+			modelBuilder.Entity<AutorPublicacion>().Property(ap => ap.Id).ValueGeneratedOnAdd();
 
-			modelBuilder.Entity<AutorPublicacion>().Property(ap => ap.Id).ValueGeneratedOnAdd();//cada vez que se ingresa se genera el valor como identity
+			//modelBuilder.Entity<Libro>().HasAlternateKey(l => l.ISBN); //ES UNIQUE ISBN
+			
+			//ALTERNATIVA A LO ANTERIOR:
+			modelBuilder.Entity<Libro>().HasIndex(l => l.ISBN).IsUnique();
 
-
-			base.OnModelCreating(modelBuilder);	
+			base.OnModelCreating(modelBuilder);
         }
-
     }
 }

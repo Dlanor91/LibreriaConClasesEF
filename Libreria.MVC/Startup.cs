@@ -25,7 +25,9 @@ namespace Libreria.MVC
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllersWithViews();			
+			services.AddControllersWithViews();
+			//Agregar el servicio para configurar la clase de contexto
+			//Observar que Configuration ya fue inyectada en el constructor de Startup
 			services.AddDbContext<LibreriaContext>
 				(opciones => opciones
 							.UseSqlServer(Configuration.GetConnectionString("ConexionLibreria_Dev"))
@@ -56,7 +58,7 @@ namespace Libreria.MVC
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					pattern: "{controller=Publicaciones}/{action=Index}/{id?}");
 			});
 		}
 	}

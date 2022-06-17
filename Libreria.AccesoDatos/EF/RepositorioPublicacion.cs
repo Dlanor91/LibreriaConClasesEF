@@ -1,12 +1,10 @@
-﻿using Libreria.Dominio.EntidadesNegocio;
-using Libreria.Dominio.InterfacesRepositorios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Libreria.Dominio.InterfacesEntidades;
+using Libreria.Dominio.EntidadesNegocio;
+using Libreria.Dominio.InterfacesRepositorios;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace Libreria.AccesoDatos.EF
 {
@@ -21,8 +19,9 @@ namespace Libreria.AccesoDatos.EF
 
         public bool Add(Publicacion obj)
         {
+            //VERSIÓN MINIMALISTA OJO!!
             Contexto.Publicaciones.Add(obj);
-            return Contexto.SaveChanges()>1;
+            return Contexto.SaveChanges() >= 1;
         }
 
         public IEnumerable<Publicacion> FindAll()
@@ -35,12 +34,12 @@ namespace Libreria.AccesoDatos.EF
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Publicacion> ObtenerlasPublicacionesDelAutor(int idAutor)
+        public IEnumerable<Publicacion> ObtenerLasPublicacionesDelAutor(int idAutor)
         {
             return Contexto.Publicaciones
                            .Include(p => p.AutoresPublicaciones)
-                           .ThenInclude(ap => ap.Autor)
-                           .Where(p => p.AutoresPublicaciones.Any(ap => ap.AutorId == idAutor))
+                           .ThenInclude(ap => ap.Autor)                           
+                           .Where(p => p.AutoresPublicaciones.Any(ap => ap.Autor.Id == idAutor))
                            .ToList();
         }
 

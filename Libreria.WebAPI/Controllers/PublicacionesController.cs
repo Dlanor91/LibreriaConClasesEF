@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Libreria.Dominio.EntidadesNegocio;
-using Libreria.AccesoDatos;
-using LibreriaDTO;
 using Libreria.Dominio.InterfacesRepositorios;
+using Libreria.DTOs;
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Libreria.WebAPI.Controllers
@@ -15,31 +15,31 @@ namespace Libreria.WebAPI.Controllers
     [ApiController]
     public class PublicacionesController : ControllerBase
     {
+        public IRepositorioPublicacion RepoPublicaciones { get; set; }
 
-        public IRepositorioPublicacion RepoPublicacion { get; set; }
-
-        public PublicacionesController(IRepositorioPublicacion repoPublicacion)
+        public PublicacionesController(IRepositorioPublicacion repo)
         {
-            RepoPublicacion=repoPublicacion;
+            RepoPublicaciones = repo;
         }
 
 
-        // GET: api/publicaciones
-        [HttpGet]
-        public IEnumerable<string> Get()
+        //GET api/publicaciones/6
+        [HttpGet("{id}")]
+        [Route("{id}", Name ="Get")]
+        public IActionResult FindById(int id)
         {
-            return new string[] { "value1", "value2" };
+            return Ok();
         }
 
-        // GET api/publicaciones/autor/5 no preciso parametros
-        [HttpGet("autor/{idAutor}")]        
+            // GET api/publicaciones/autor/5
+            [HttpGet("autor/{idAutor}")]
         public IActionResult Get(int idAutor)
         {
             try
             {
                 if (idAutor == 0) return BadRequest();
 
-                IEnumerable<Publicacion> pubs = RepoPublicacion.ObtenerlasPublicacionesDelAutor(idAutor);
+                IEnumerable<Publicacion> pubs = RepoPublicaciones.ObtenerLasPublicacionesDelAutor(idAutor);
                 IEnumerable<DTOPublicacion> dtos = pubs.Select(pub => new DTOPublicacion()
                 {
                     Id = pub.Id,
@@ -49,40 +49,55 @@ namespace Libreria.WebAPI.Controllers
                     Anio = pub is Revista ? (pub as Revista).Anio : 0,
                     NombresAutores = string.Join(", ", pub.AutoresPublicaciones.Select(ap => ap.Autor.Nombre))
                 });
+
                 return Ok(dtos);
             }
             catch (Exception)
             {
-
                 return StatusCode(500);
             }
         }
 
-        // POST api/publicaciones
+        // POST api/publicaciones/alta/libro
         [HttpPost]
-        [Route("LIbro")]
+        [Route("alta/libro")]
         public IActionResult Post([FromBody] Libro libro)
         {
             try
             {
                 if (!libro.Validar()) return BadRequest();
-                bool ok = RepoPublicacion.Add(libro);
-                return Ok();
-            }
-            catch (Exception)
-            {
+                //if (!ModelState.IsValid) return BadRequest();
 
+                bool ok = RepoPublicaciones.Add(libro);
+                if (!ok) return Conflict();
+
+                return CreatedAtRoute("Get", new { id = libro.Id }, libro);
+            }
+            catch (Exception ex)
+            {
                 return StatusCode(500);
             }
         }
 
+        // POST api/publicaciones/alta/revista
         [HttpPost]
-        [Route("Revista")]
+        [Route("alta/revista")]
         public IActionResult Post([FromBody] Revista revista)
         {
-            bool ok = RepoPublicacion.Add(revista);
-            return Ok();
-        }
+            try
+            {
+                if (!revista.Validar()) return BadRequest();
+                //if (!ModelState.IsValid) return BadRequest();
 
+                bool ok = RepoPublicaciones.Add(revista);
+                if (!ok) return Conflict();
+
+                return CreatedAtRoute("Get", new { id = revista.Id }, revista);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }
